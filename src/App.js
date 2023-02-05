@@ -4,9 +4,11 @@ import nations from "./components/nations";
 import "flag-icon-css/css/flag-icons.css";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+
 function App() {
   const [country, setCountry] = useState([]);
   const [flags, setFlags] = useState({});
+ const [handle, setHandle] = useState(false)
   const color = useRef(null);
   console.log(color)
   const createRandomNUmber = () => {
@@ -21,13 +23,12 @@ function App() {
   };
   const checkAnswer = (cal) => {
     if (cal.name === flags.name) {
-      console.log(color.current);
-      color.current.style.backgroundColor = "green";
+      setHandle(true)
       setTimeout(() => {
-        color.current.style.backgroundColor = "#0d6efd";
         nextQuesion();
       }, 2000);
     } else {
+      setHandle(false)
       console.log("not matched!");
     }
   };
@@ -36,9 +37,11 @@ function App() {
     createRandomNUmber();
   }, []);
 
-  const nextQuesion = () => {
+  const nextQuesion = async () => {
+   setHandle(false)
     createRandomNUmber();
   };
+   console.log(handle)
   return (
     <div className="App">
       <h3>Game of Flags</h3>
@@ -53,7 +56,6 @@ function App() {
         {country.map((ele, key) => (
           <button
             className="btn btn-primary"
-            ref={color}
             key={key}
             onClick={(e) => checkAnswer(ele)}
           >
@@ -61,6 +63,9 @@ function App() {
           </button>
         ))}
       </div>
+
+{handle ===true ? <p style={{marginTop:"40px"}}>{flags.name} is right answer</p>:""}
+
     </div>
   );
 }
