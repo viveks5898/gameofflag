@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.flag-icon{
+  width: 5em !important;
+  line-height: 5em !important;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
