@@ -42,6 +42,11 @@ function App() {
     createRandomNUmber();
   };
    console.log(handle)
+   const portrait = window.matchMedia(("orientation:portrait")).matches;
+useEffect(()=>{
+  console.log("portrait",portrait)
+
+},[portrait])
   return (
     <div className="App">
       <h3>Game of Flags</h3>
